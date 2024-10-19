@@ -1,0 +1,18 @@
+1) \project_{bar} \select_{birra='Peroni'}(Serve);
+
+2) \project_{bevitore} \select_{birra='Amstel' OR birra='Corona'}(Gradisce);
+
+3) \project_{bevitore} \select_{(birra='Amstel'AND b='Corona')OR(birra='Corona' AND b='Amstel')}  (Gradisce \join_{bevitore = bev} \rename_{bev, b}(Gradisce));
+
+4) \project_{bar}\rename_{bar, indirizzo}(Bar) \diff (\project_{bar}(Serve) \union \project_{bar}(Frequenta));
+
+5) \project_{nome}(Birra) \diff \project_{birra}(Serve);
+
+6) \project_{nome, nome2} (Bevitore \join_{nome != nome2 and indirizzo = indirizzo2 and nome < nome2} \rename_{nome2, indirizzo2}(Bevitore));
+
+7) (\project_{bevitore, birra} (\rename_{bevitore} \project_{nome}(Bevitore) \join \rename_{birra} \project_{nome}(Birra))) \diff Gradisce;
+
+8) \rename_{bevitore} \project_{nome}(Bevitore) \diff \project_{bevitore} ((\project_{bevitore, birra} (\rename_{bevitore} \project_{nome}(Bevitore) \join \rename_{birra} \project_{nome}(Birra))) \diff Gradisce);
+
+
+
